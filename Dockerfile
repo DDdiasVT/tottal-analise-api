@@ -8,8 +8,8 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install only production dependencies
-# (If you need dev dependencies for build, use 'npm install' then 'npm prune --production')
-RUN npm ci --only=production
+# Install dependencies using npm install (more robust than ci if lockfile is slightly out of sync)
+RUN npm install --only=production
 
 # Copy application source code
 COPY . .
