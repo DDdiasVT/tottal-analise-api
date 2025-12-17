@@ -1,10 +1,11 @@
 services:
   - type: web
     name: tottal-analise-api
-    env: node
+    env: docker
     plan: free
-    buildCommand: npm install
-    startCommand: npm start
+    # buildCommand and startCommand are not needed for Docker, 
+    # Render uses the Dockerfile CMD.
+
     envVars:
       - key: SPREADSHEET_ID
         sync: false
