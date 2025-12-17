@@ -6,10 +6,21 @@ const CREDENTIALS_PATH = path.join(__dirname, '../credentials.json');
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 
 // Auth client
-const auth = new google.auth.GoogleAuth({
-    keyFile: CREDENTIALS_PATH,
-    scopes: SCOPES,
-});
+let auth;
+if (process.env.GOOGLE_CREDENTIALS) {
+    // If running in cloud (Render) with credentials in env var
+    const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+    auth = new google.auth.GoogleAuth({
+        credentials,
+        scopes: SCOPES,
+    });
+} else {
+    // Local development with file
+    auth = new google.auth.GoogleAuth({
+        keyFile: CREDENTIALS_PATH,
+        scopes: SCOPES,
+    });
+}
 
 const sheets = google.sheets({ version: 'v4', auth });
 

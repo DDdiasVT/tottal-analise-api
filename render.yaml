@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: tottal-analise-api
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: SPREADSHEET_ID
+        sync: false
+      - key: GOOGLE_CREDENTIALS
+        sync: false
