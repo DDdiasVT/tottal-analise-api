@@ -9,7 +9,7 @@ COPY package*.json ./
 
 # Install only production dependencies
 # Install dependencies using npm install (more robust than ci if lockfile is slightly out of sync)
-RUN npm install --only=production
+RUN npm install --omit=dev
 
 # Copy application source code
 COPY . .
