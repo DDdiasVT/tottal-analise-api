@@ -3,11 +3,12 @@ services:
     name: tottal-analise-api
     env: docker
     plan: free
-    # buildCommand and startCommand are not needed for Docker, 
-    # Render uses the Dockerfile CMD.
-
     envVars:
-      - key: SPREADSHEET_ID
+      - key: SUPABASE_URL
         sync: false
-      - key: GOOGLE_CREDENTIALS
+      - key: SUPABASE_SERVICE_KEY
         sync: false
+      - key: PAGBANK_TOKEN
+        sync: false
+      - key: API_BASE_URL
+        value: https://tottal-analise-api.onrender.com
